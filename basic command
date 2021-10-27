@@ -2,6 +2,8 @@ Linux commands
 ##################
 # basic commands #
 ##################
+ctrl+c 用于停止程序运行
+##################
 
 {1}       ls [-al]     
 list files 显示指定工作目录下内容（列出目前工作目录所含之文件及子目录) 
@@ -148,7 +150,8 @@ link files 非常重要的命令，它为某一个文件在另外一个位置建
 
 
 {30}     nohup
-
+nohup Rscript test_calcPhenotype.R >output.file
+运行有误时删去nohup及后缀进行试运行
 
 
 & (run a program background)
