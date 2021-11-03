@@ -1,0 +1,19 @@
+### 
+
+awk -F":" '/sh$/' ../awk.txt
+# 结果
+1:root:x:0:0:root:/root:/bin/bash
+### 把结果保存到tmp
+awk -F":" '/sh$/' ../awk.txt > tmp
+### 把root替换成abc
+sed "s/root/abc/" tmp
+# 结果
+1:abc:x:0:0:root:/root:/bin/bash
+### 把所有root替换成abc
+sed "s/root/abc/g" tmp
+
+
+### 将两行命令放在一行处理 - 管道命令，把数据当成水，把处理数据的命令当成水池，tmp作为过渡的桶，倒入另一个池子里
+
+管道符"|"
+管道可以传递数据，每个管道后面必须跟可以接收数据的命令
