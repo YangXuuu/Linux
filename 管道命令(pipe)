@@ -17,3 +17,21 @@ sed "s/root/abc/g" tmp
 
 管道符"|"
 管道可以传递数据，每个管道后面必须跟可以接收数据的命令
+
+head -1 sed.txt|cat -A
+#结果
+11^Iaa$ 
+# ^I表示制表符，$符是unix正常的文本结尾附
+
+head -1 test.txt|cat -A
+#结果
+11^Ilala^M$
+# ^M符是DOS系统的文本结尾附，cat-A可以查看文件分隔符以及尾符是否正常
+### 将结尾的^M$变成$
+dos2unix.exe test.txt
+
+
+
+
+
+
