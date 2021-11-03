@@ -27,8 +27,13 @@ head -1 test.txt|cat -A
 #结果
 11^Ilala^M$
 # ^M符是DOS系统的文本结尾附，cat-A可以查看文件分隔符以及尾符是否正常
-### 将结尾的^M$变成$
+### 将结尾的^M$变成$ 格式转换
 dos2unix.exe test.txt
+
+### cut 切割命令，参数：-f n；n为需要截取数据的第几列（处理整齐的数据比较方便）
+cut -f2 ../awk.txt
+### 注意：cut在切割时默认为制表符做切割，想要切割数据如:root:x:0:0:root:/root:/bin/bash
+
 
 
 
