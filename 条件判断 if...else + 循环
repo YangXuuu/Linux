@@ -33,6 +33,7 @@ fi
 
 循环
 常见用法： while read A B；do action；done < text
+批量修正文件夹
 text为read A,B的对象
 
 ^ 制表符 $ 表示结尾
@@ -46,5 +47,27 @@ Sample_1 is belong to Group_1
 Sample_2 is belong to Group_0
 Sample_3 is belong to Group_1
 
+例：想要在文件中写入与文件名相同的内容,不能确定循环对象是想要的时先echo
+2021_1
+2021_10
+2021_11
 
+$ for i in `ls -d 2021*`;do echo  $i;done
+2021_1
+2021_10
+2021_11
+### cd $i表示每次循环进入文件,touch完后cd退出；do与done之间为循环的对象，可以写入无数命令只要保证开始的文件夹与最后退出的文件夹是同一个
+$ for i in `ls -d 2021*`;do cd $1;touch $i.txt;cd..;done
+### 同时修改文件权限
+$ for i in `ls -d 2021*`;do cd $1;touch $i.txt;chmod 750 $i.txt;cd..;done
+$ ll 2021_*
+2021_1
+2021_10
+2021_11
+
+$ for i in {1..100};do echo $i;done
+# 结果打印了1-100
+
+### 创建名为OE_1的文件夹；在此文件夹下创建1.txt的文件；往txt文件中写hello 1！；再修改权限-结束 (反斜杠用于消除特殊符号的含义)
+$ for i in {1..100};do mkdir OE_$i;touch OE_$i/$i.txt;echo -e "hello $i\!" > OE_$i/i.txt;chmod 751 OE_$i/$i.txt;done
 
