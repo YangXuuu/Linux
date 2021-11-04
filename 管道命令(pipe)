@@ -32,8 +32,89 @@ dos2unix.exe test.txt
 
 ### cut 切割命令，参数：-f n；n为需要截取数据的第几列（处理整齐的数据比较方便）
 cut -f2 ../awk.txt
-### 注意：cut在切割时默认为制表符做切割，想要切割数据如:root:x:0:0:root:/root:/bin/bash
+### 注意：cut在切割时默认为制表符做切割，想要切割数据如:root:x:0:0:root:/root:/bin/bash 需要使用：作为分割符
+$ cut -d":" -f2 ../awk.txt
 
+
+### 切割多列
+$ cut -d":" -f1,2,3,4 ../awk.txt
+###上述命令可写成
+$ cut -d":" -f1-4 ../awk.txt
+### 把第四行后的内容全部切割出来
+$ cut -d":" -f4- ../awk.txt
+
+### 单用sort进行排序将以首数字进行排序 
+$ less tmp |sort 
+# 事例结果
+0
+02
+12
+13
+4
+55
+7
+99
+### 从小到大进行排序
+$ less tmp |sort -n
+### 从大到小进行排序
+$ less tmp |sort -n -r
+$ less tmp |sort -nr
+### 用sort去重
+$ less tmp |sort -u
+### 相同效果的code，使用此行代码进行去重！
+$ less tmp |sort |uniq 
+### 对每一行的重复频次做统计
+$ less tmp |sort |uniq -c
+### 统计总行数
+$ less tmp |uniq |wc -l
+$ less tmp |uniq |wc
+### 去重+排序
+$ less tmp |sort |uniq |sort -nr
+### 去重+排序+统计
+$ less tmp |sort |uniq |sort -nr|wc -l
+
+
+### grep 查找命令，参数：-c统计查找内容的个数，-v反向查找
+### 查找包含1的行
+$ grep "1" ../awk.txt
+### 统计awk txt文件中含有1的行数
+$ grep -c "1" ../awk.txt
+### 查找所有不包含1的行
+$ grep -v "1" ../awk.txt
+### 查找包含12或usr的行
+$ grep -E "12|usr" ..awk/txt
+### 查找包含12和usr的行
+$ grep "1" ../awk.txt |grep "usr"
+
+### wc 统计数据信息，参数：-l
+$ grep "usr" ../awk.txt |wc -l
+### 统计当前路径下所有txt文件的数据信息
+$ wc -l *txt
+
+
+### 事例：pipe.fa文件
+> E3_1 MISEQ01:252:000000-BFKJ3:1 orig_bc=TNCGG new_bc=TACGG bc_diffs=1
+TAGCCGTTAGTCGTAGTCGTTTA
+###E3_1为id，TCGA为碱基信息
+### 有十个样本，每个样本有一万次duplication，把样本合并，能够根据统计行数，但某个重复样本可能被合并两次，总的序列数一样但样本数不同。此时需要拿到合并序列文件的样本数量来核对十个样本是否全部纳入，把样本id信息提取后，可以通过去重达到目的。
+### 提取信息
+$ less ../pipe/fa |grep ">"
+# 结果
+> E3_1 MISEQ01:252:000000-BFKJ3:1 orig_bc=TNCGG new_bc=TACGG bc_diffs=1
+### 当id为一行，碱基信息另一行时，可以认为所有id都在奇数行，所有碱基信息在偶数行
+$ less ../pipe.fa |awk 'NR%2==1'
+### 提取E3
+$ less ../pipe.fa |awk 'NR%2==1' |awk -F"_" '{print $1}'
+# 结果
+> E3
+### 提取E3也可以写成
+$ less ../pipe/fa |awk 'NR%2==1'|cut -d"_" -f1
+### 或者利用sed进行替换,将下划线以后的东西替换成无，*为通配符
+$ less ../pipe.fa |awk 'NR%2==1'|sed "s/_.*//"
+### 排序+去重
+$ less ../pipe.fa |awk 'NR%2==1'|sed "s/_.*//" |sort -u
+### 想要知道每个样本有多少duplication
+$ less ../pipe.fa |awk 'NR%2==1'|sed "s/_.*//" |sort |uniq -c
 
 
 
