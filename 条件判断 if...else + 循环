@@ -1,0 +1,50 @@
+###
+赋值不得含有空格，条件判断必须含有空格 
+
+if... else 语句的用法
+if [expression]
+then
+    Statement(s) to be executed if expression is true
+else
+    Statement(s) to be executed if expression is true
+fi
+如果expression为真，then后边的语句将会被执行，否则不执行任何语句。
+最后必须以fi来结尾闭合if
+#！/bin/bash
+#This script is "if_else.sh"
+a=10
+b=8
+echo -e "a=$a,b=$b"
+if [$a == $b]
+then
+    echo "a is equal to b"
+elif [$a >$b]
+then 
+    echo "a is bigger than b"
+else
+    echo "a is smaller than b"
+fi
+
+
+
+
+
+
+
+循环
+常见用法： while read A B；do action；done < text
+text为read A,B的对象
+
+^ 制表符 $ 表示结尾
+-e 可以把“”的内容识别为变量
+$ cat -A mapping.txt
+Sample_1^IGroup_1$
+Sample_2^IGroup_0$
+Sample_3^IGroup_1$
+$ while read A B; do echo -e "$A is belong to $B"; done < mapping.txt
+Sample_1 is belong to Group_1
+Sample_2 is belong to Group_0
+Sample_3 is belong to Group_1
+
+
+
