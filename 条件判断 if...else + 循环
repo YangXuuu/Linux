@@ -25,6 +25,10 @@ else
     echo "a is smaller than b"
 fi
 
+### tips
+[ 和$要打空格
+If 后也要打空格
+Sh - 运行文件
 
 
 
