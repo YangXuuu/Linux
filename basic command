@@ -9,7 +9,8 @@ $ vi
 i 插入（insert），esc退出
 :wq - 保存
 :q! - 不保存
-:set number - 设置行号
+:set number - 设置行号 （简写 - :set nu ）
+:set nonumber - 关闭行号 （简写 - :set nonu）
 
 
 
