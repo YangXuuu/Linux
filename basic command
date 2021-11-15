@@ -17,6 +17,8 @@ i 插入（insert），esc退出
 
 ### 查看历史命令
 history
+###
+qstat -j 1111111|grep workdir
 
 
 
