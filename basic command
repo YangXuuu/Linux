@@ -4,6 +4,14 @@ Linux commands
 ##################
 ctrl+c 用于停止程序运行
 ##################
+###在linux中运行文件（例如python文件 main.py）
+### 注意！需要在文件的目录环境下运行，例如main.py在Desktop下，则需要先cd到那里去
+$ chmod a+x main.py
+### 查看运行结果
+python main.py
+
+
+
 ### 编辑文件
 $ vi 
 i 插入（insert），esc退出
