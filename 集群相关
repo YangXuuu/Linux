@@ -12,6 +12,7 @@ CPU: 计算机的运算核心和控制核心，它的功能主要是解释计算
 
 qsub 提交作业
 qstat 查看正在运行的作业
+qstat -j xxxxxx|grep workdir
 qdel 取消运行的作业
 pbsnodes（pnodes）查看各节点资源使用情况
 
