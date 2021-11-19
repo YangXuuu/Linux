@@ -59,6 +59,29 @@ ls -lR | grep "^d"| wc-l
 
 
 
+###
+vi时使用set list 查看换行符
+###
+在finalshell或xshell中
+杀死进程用qdel而并非kill
+kill只能杀死jobs看到的命令
+
+###
+fg %2
+
+fg命令用于将后台作业（在后台运行的或者在后台挂起的作业）放到前台终端运行。与bg命令一样，若后台任务中只有一个，则使用该命令时，可以省略任务号。
+
+###
+读取文本文件，使用less时发现第一行最开始有<U+FEFF>,而使用vi与直接右键打开时却看不到
+#去掉多余字符
+$ vim file_name
+:set nobomb
+:wq
+#此时出现！override
+:wq!
+
+
+
 
 
 
