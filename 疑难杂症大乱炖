@@ -80,7 +80,23 @@ $ vim file_name
 #此时出现！override
 :wq!
 
+显示日期与时间的指令：date
+显示日历的指令：cal 
+$ cal [month] [year]
+简单好用的计算机：bc
+$ quit
 
+
+Tab键
+具有命令补全和文件补齐的功能
+ctrl-c键
+终止程序
+ctrl-d键
+键盘输入结束-取代exit，直接离开
+shift + pageup/pagedown
+往前翻代码
+-h （--help）
+查看代码指令的基本用法与选项参数
 
 
 
