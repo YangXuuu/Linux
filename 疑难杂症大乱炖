@@ -98,6 +98,56 @@ shift + pageup/pagedown
 -h （--help）
 查看代码指令的基本用法与选项参数
 
+显示命令操作说明 （man for manual）
+$ man date
+
+# 条件判断
+if [条件判断式]; then
+    当条件判断式成立时，可以进行的指令工作内容；
+fi &lt；==
+
+# 如果有多个条件要判别时，除了将多个条件写入一个中括号内的情况，还可以有多个中括号来隔开
+&&代表AND； ||代表or
+
+["${yn}"=="Y" -o "${yn}"=="y"] 可替换成 ["${yn}"=="Y"]||["${yn}"=="y"]
+
+多重复杂条件判断式
+# 一个条件判断，分成功和失败进行（else）
+$ if [条件判断式]；then
+   当条件判断式成立时，可以进行的指令工作内容；
+$ else
+   当条件判断式不成立时，可以进行的指令工作内容；
+$ fi
+
+如果是更复杂的情况，则可以使用这个语法：
+# 多个条件判断 (if ... elif ... elif ... else) 分多种不同情况执行
+If [条件判断式一]；then
+    当条件判断式一成立时，可以进行的指令工作内容；
+elif [条件判断式二]；then
+    当条件判断式二成立时，可以进行的指令工作内容；
+else
+    当条件判断式一与二不成立时，可以进行的指令工作内容；
+fi
+
+# 要注意的是，elif也是个判别式，因此出现elif后面都要接then来处理；但else已经是最后的没有成立的结果了，所以else后面并没有then
+
+### 如果你不希望使用由键盘输入额外的数据时，可以使用参数功能（$1），让使用者在下达指令时就将参数带进去，现在想让使用者输入hello这个关键词时，利用参数的方法可以这样依序设计：
+1. 判断$1是否为hello，如果是，就显示“hello，how are you？”；
+2. 如果没有加任何参数，就提示使用者必须要使用的参数下达法；
+3. 如果加入的参数不是hello，就提醒使用者仅能使用hello为参数
+
+# !/bin/bash
+# Program:
+#     check $1 is equal to "hello"
+$ PATH = ～/bin
+$ export PATH
+$ if ["${1}" == "hello"]; then
+$     echo "Hello, how are you?"
+$ elif ["${1}" == ""]; then
+$    echo "You MUST input parameters, ex&gt; {${0} someword}"
+$ else
+$     echo "The only parameter is 'hello', ex&gt; {${0} hello} "
+$ fi
 
 
 
