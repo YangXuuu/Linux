@@ -149,7 +149,11 @@ $ else
 $     echo "The only parameter is 'hello', ex&gt; {${0} hello} "
 $ fi
 
-
+$ netstat
+查询到目前主机有打开的网络服务端口（service ports）
+可以利用netstat -tuln来取得目前主机有启动的服务
+local adress（本地主机的IP与端口对应）
+IP的部分说明的是该服务位于那个接口上，若为127.0.0.1则是仅针对本机开放，若是0.0.0.0或:::则代表对整个internet开放
 
 
 
