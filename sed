@@ -79,3 +79,24 @@ sed '2d' passwd
 删除第二行及后面的所有行
 
 sed '2,$d' passwd
+
+
+
+
+
+### sed
+
+# 查看testfile内容
+$ cat testfile 
+# 在第四行后添加新字符串newline
+$ sed -e 4a\newline testfile
+# 将/etc/passwd的内容列出并且列印行号，同时将第2-5行删除（只打印删除后的结果但不改变原文件）
+$ nl /etc/passwd | sed '2,5d'
+# 删除第三行到最后一行
+$ nl /etc/passwd | sed '2d'
+# 只删除第二行
+$ nl /etc/passwd | sed '2d'
+# 在第二行后（第三行前）加上‘drink tea？’
+$ nl /etc/passwd | sed '2a drink tea'
+# 在第二行前添加
+$ nl /etc/passwd | sed '2i drink tea'
